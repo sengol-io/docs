@@ -1,0 +1,99 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "luma",
+  "name": "Sengol",
+  "colors": {
+    "primary": "#304688",
+    "light": "#85aac7",
+    "dark": "#dde2ec"
+  },
+  "favicon": "https://media.brand.dev/a0405114-16d5-41a8-90e5-949ff5409c72.png",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "introduction",
+              "quickstart",
+              "plans-and-pricing"
+            ]
+          },
+          {
+            "group": "Core Concepts",
+            "pages": [
+              "concepts/risk-domains",
+              "concepts/risk-scores",
+              "concepts/compliance-frameworks",
+              "concepts/scoring-methodology"
+            ]
+          },
+          {
+            "group": "Platform",
+            "pages": [
+              "platform/risk-assessment",
+              "platform/compliance-dashboard",
+              "platform/incident-intelligence",
+              "platform/projects"
+            ]
+          },
+          {
+            "group": "Guides",
+            "pages": [
+              "guides/first-assessment",
+              "guides/reading-your-results",
+              "guides/team-collaboration",
+              "guides/exporting-reports"
+            ]
+          },
+          {
+            "group": "Help",
+            "pages": [
+              "help/faq",
+              "help/troubleshooting"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "api/overview",
+              "api/authentication"
+            ]
+          },
+          {
+            "group": "Endpoints",
+            "pages": [
+              "api/assessments",
+              "api/projects",
+              "api/risk-scores",
+              "api/reports"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Support",
+        "href": "mailto:support@sengol.ai"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Start Free",
+      "href": "https://sengol.ai/auth/register"
+    }
+  },
+  "footer": {
+    "socials": {}
+  }
+}

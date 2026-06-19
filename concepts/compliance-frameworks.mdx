@@ -1,0 +1,103 @@
+---
+title: "Compliance Frameworks Supported by Sengol Assessments"
+sidebarTitle: "Frameworks"
+description: "Sengol maps AI risk assessments to EU AI Act, GDPR, HIPAA, SOC 2, ISO 42001, NIST AI RMF, and more. See which frameworks apply to your deployment."
+---
+
+Every Sengol risk assessment automatically maps your findings to the compliance frameworks that apply to your system. Rather than running a separate compliance review after your technical risk assessment, Sengol embeds regulatory requirements directly into the questionnaire — so by the time you receive your risk report, you already know which articles, clauses, and controls you're at risk of violating and what you need to do about it.
+
+## Supported frameworks
+
+<Accordion title="EU AI Act">
+  **Type:** Mandatory regulation
+  **Jurisdiction:** European Union
+  **Applies when:** You deploy, import, or distribute an AI system in the EU market
+
+  The EU AI Act is the world's first comprehensive horizontal AI regulation. It imposes obligations on providers and deployers of high-risk AI systems, including conformity assessments, technical documentation, human oversight mechanisms, and registration in the EU AI database. Sengol maps assessment findings to specific risk classification criteria and Article obligations, giving you a clear picture of your readiness for CE marking or market entry.
+</Accordion>
+
+<Accordion title="GDPR — General Data Protection Regulation">
+  **Type:** Mandatory regulation
+  **Jurisdiction:** European Union (and EEA)
+  **Applies when:** Your AI system processes personal data of EU or EEA residents, regardless of where you are based
+
+  GDPR governs the lawful basis for processing, data subject rights, data minimization, purpose limitation, and cross-border transfer mechanisms. For AI systems, key GDPR obligations include Article 22 rights regarding automated decision-making, DPIA requirements for high-risk processing, and data retention limits on training datasets. Sengol surfaces compliance gaps across each of these areas based on your system's data profile.
+</Accordion>
+
+<Accordion title="CCPA — California Consumer Privacy Act">
+  **Type:** Mandatory regulation
+  **Jurisdiction:** California, United States
+  **Applies when:** Your AI system processes personal information of California residents and meets CCPA business thresholds
+
+  CCPA grants California residents rights to know, delete, opt-out, and non-discrimination regarding their personal information. For AI systems, this affects training data provenance, inference data handling, and any sale or sharing of consumer data with third parties. Sengol flags CCPA exposure in your Data Governance and Compliance scores.
+</Accordion>
+
+<Accordion title="HIPAA — Health Insurance Portability and Accountability Act">
+  **Type:** Mandatory regulation
+  **Jurisdiction:** United States
+  **Applies when:** Your AI system handles Protected Health Information (PHI) as a covered entity or business associate
+
+  HIPAA's Security Rule and Privacy Rule impose strict technical, physical, and administrative safeguards on systems that create, receive, transmit, or maintain PHI. For AI systems in healthcare, this includes model training on patient records, inference pipelines that process clinical notes, and any vendor with PHI access. Sengol's healthcare assessment track applies elevated weighting to HIPAA-specific controls across Security, Data Governance, and Operational domains.
+</Accordion>
+
+<Accordion title="SOC 2 — Service Organization Control 2">
+  **Type:** Voluntary attestation standard
+  **Jurisdiction:** United States (globally recognized)
+  **Applies when:** You offer your AI system as a service to enterprise customers who require third-party assurance
+
+  SOC 2 evaluates controls across five Trust Service Criteria: Security, Availability, Processing Integrity, Confidentiality, and Privacy. A SOC 2 Type II report demonstrates that your controls operated effectively over an audit period. Sengol maps assessment findings to SOC 2 criteria to help you identify control gaps before engaging an auditor, reducing the cost and time of your formal audit.
+</Accordion>
+
+<Accordion title="ISO 27001 — Information Security Management">
+  **Type:** International voluntary standard
+  **Jurisdiction:** Global
+  **Applies when:** You seek to certify your organization's information security management system
+
+  ISO 27001 provides a systematic framework for establishing, implementing, and continually improving an ISMS. Its Annex A controls cover access management, cryptography, supplier relationships, and incident management — all directly relevant to AI system security. Sengol's Security and Operational risk findings map to relevant Annex A control domains.
+</Accordion>
+
+<Accordion title="ISO 42001 — AI Management System">
+  **Type:** International voluntary standard
+  **Jurisdiction:** Global
+  **Applies when:** You want a certified framework for responsible AI development and deployment
+
+  ISO 42001 is the first international standard specifically designed for AI management systems. It addresses AI-specific concerns including bias, transparency, accountability, and human oversight — making it directly complementary to Sengol's assessment model. Sengol maps findings to ISO 42001 clauses and Annex controls, giving you a structured path toward certification if required by customers or regulators.
+</Accordion>
+
+<Accordion title="PCI-DSS — Payment Card Industry Data Security Standard">
+  **Type:** Mandatory industry standard
+  **Jurisdiction:** Global (enforced by card networks)
+  **Applies when:** Your AI system processes, stores, or transmits payment card data
+
+  PCI-DSS v4.0 imposes 12 core requirements covering network security, data protection, vulnerability management, access control, and monitoring for cardholder data environments. For fintech AI — fraud detection, credit scoring, transaction monitoring — Sengol surfaces PCI-DSS control gaps in the Security and Cloud Infrastructure domains with specific mapping to applicable requirements.
+</Accordion>
+
+<Accordion title="NIST AI RMF — AI Risk Management Framework">
+  **Type:** Voluntary guidance framework
+  **Jurisdiction:** United States (widely adopted internationally)
+  **Applies when:** You deploy AI in US federal contexts or want a structured voluntary framework for AI risk governance
+
+  The NIST AI RMF organizes AI risk management across four functions: **GOVERN** (policies and culture), **MAP** (risk identification and context), **MEASURE** (risk analysis and tracking), and **MANAGE** (risk response and monitoring). Sengol's assessment structure is directly aligned with the RMF's core functions, so your risk report maps findings to the corresponding RMF subcategories and recommended actions.
+</Accordion>
+
+## How framework mapping works
+
+Sengol embeds regulatory obligations at the question level, not as a post-hoc overlay. When you answer a question about your data retention policy, that answer is simultaneously evaluated against GDPR Article 5(1)(e), HIPAA's minimum necessary standard, and your applicable retention schedule under CCPA — all at once. Each compliance framework your system is subject to contributes to your Compliance Risk score based on the probability of violation given your current control posture.
+
+When you view your report, compliance findings are grouped by framework so you can hand off a GDPR section to your privacy counsel, a HIPAA section to your compliance officer, and a SOC 2 section to your audit team — without manually cross-referencing which findings belong where.
+
+## Industry-specific framework guidance
+
+Different industries carry different default compliance obligations. Use the table below as a starting point, then confirm your specific requirements with qualified legal counsel.
+
+| Industry | Priority frameworks |
+|----------|-------------------|
+| **Healthcare & life sciences** | HIPAA, GDPR (if EU data), ISO 42001, NIST AI RMF |
+| **Financial services & fintech** | PCI-DSS, SOC 2, GDPR (if EU data), CCPA (if CA data) |
+| **EU market deployment** | EU AI Act, GDPR, ISO 42001 |
+| **US federal or defense** | NIST AI RMF, HIPAA (if health data), SOC 2 |
+| **SaaS / enterprise software** | SOC 2, ISO 27001, GDPR (if EU data), CCPA (if CA data) |
+
+<Note>
+  Sengol's compliance mapping is guidance, not legal advice. The frameworks above represent common obligations based on industry and jurisdiction, but your specific regulatory requirements depend on your business structure, data flows, customer contracts, and applicable law. Consult qualified legal counsel before making compliance determinations.
+</Note>

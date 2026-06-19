@@ -1,0 +1,199 @@
+---
+title: "Sengol Troubleshooting: Errors, Access, and API Issues"
+sidebarTitle: "Troubleshooting"
+description: "Fix common problems with Sengol assessments, account access, report exports, and API errors. Includes step-by-step resolution guides."
+---
+
+This page covers the most common issues you may encounter while using Sengol — including login problems, stuck assessments, report export errors, and API failures — along with step-by-step guidance to resolve each one quickly.
+
+## Account & Login
+
+<Accordion title="I can't log in to my account">
+  If you're unable to sign in, work through the following steps in order:
+
+  <Steps>
+    <Step title="Double-check your email and password">
+      Confirm you're using the email address you registered with and that your password is entered correctly. Passwords are case-sensitive.
+    </Step>
+    <Step title="Use the Forgot Password flow">
+      On the login page, click **Forgot Password** and enter your account email. You'll receive a reset link within a few minutes.
+    </Step>
+    <Step title="Check your spam or junk folder">
+      If the reset email doesn't arrive in your inbox, check your spam, junk, or promotions folder. The email comes from `no-reply@sengol.ai`.
+    </Step>
+    <Step title="Contact support">
+      If you've completed the steps above and still can't access your account, email [support@sengol.ai](mailto:support@sengol.ai) with your account email address and a brief description of the problem.
+    </Step>
+  </Steps>
+</Accordion>
+
+<Accordion title="I didn't receive my verification email">
+  Verification emails are sent immediately after registration, but delivery can occasionally be delayed.
+
+  <Steps>
+    <Step title="Check your spam or junk folder">
+      Look for an email from `no-reply@sengol.ai`. If it's there, mark it as **Not Spam** to ensure future emails reach your inbox.
+    </Step>
+    <Step title="Resend the verification email">
+      Return to the [login page](https://sengol.ai/auth/login) and look for the option to **resend your verification email**. This generates a fresh link.
+    </Step>
+    <Step title="Contact support if the issue persists">
+      If you still haven't received the email after 10 minutes, contact [support@sengol.ai](mailto:support@sengol.ai). Include the email address you registered with so we can investigate quickly.
+    </Step>
+  </Steps>
+</Accordion>
+
+<Accordion title="My team member can't access shared projects">
+  Shared project access requires a few conditions to be in place. Check each of the following:
+
+  - **Plan level** — Project sharing is a **Team plan** feature. Verify your account is on the Team or Enterprise plan at [sengol.ai/pricing](https://sengol.ai/pricing).
+  - **Invite acceptance** — Your team member must have accepted the invitation email before they can access shared projects. Ask them to check their inbox (and spam folder) for the invite from `no-reply@sengol.ai`.
+  - **Project sharing settings** — Confirm the specific project has been shared with that team member from your project settings in the [dashboard](https://sengol.ai/dashboard).
+
+  <Note>
+    Team members added after a project was created won't automatically have access — you need to explicitly share existing projects with them.
+  </Note>
+</Accordion>
+
+---
+
+## Assessments
+
+<Accordion title="My assessment got stuck or didn't complete">
+  If your assessment appears frozen or fails to progress:
+
+  <Steps>
+    <Step title="Refresh the page">
+      Refresh your browser tab. Sengol saves your progress as you go, so you should be able to resume from where you left off in most cases.
+    </Step>
+    <Step title="Check that JavaScript is enabled">
+      Sengol's assessment engine requires JavaScript to run. Make sure JavaScript is enabled in your browser settings and that no browser extensions are blocking scripts on `sengol.ai`.
+    </Step>
+    <Step title="Start a new assessment if progress was lost">
+      If your progress wasn't saved and the session has expired, [start a new assessment](https://sengol.ai/tools/risk/assess). The questionnaire is designed to move quickly, so restarting is usually straightforward.
+    </Step>
+    <Step title="Contact support">
+      If assessments continue to get stuck, email [support@sengol.ai](mailto:support@sengol.ai) with your browser name and version, and any error messages you see.
+    </Step>
+  </Steps>
+</Accordion>
+
+<Accordion title="My risk score seems too high or too low">
+  Risk scores are a direct reflection of the answers you provide, measured against evidence from real-world AI incidents. If your score feels unexpected:
+
+  - **Review your answers for accuracy** — Go back through the questionnaire and confirm each response reflects your system's *current state*, not its intended or aspirational state.
+  - **Scores reflect reality, not goals** — If you've planned a control but haven't implemented it yet, it shouldn't be marked as in place.
+  - **Context matters** — High-risk use cases (e.g., healthcare diagnostics, financial decisioning) naturally produce higher base scores due to the regulatory and operational stakes involved.
+
+  If you've reviewed your answers and genuinely believe there's a scoring error, contact [support@sengol.ai](mailto:support@sengol.ai) with your assessment ID and details of the specific score that seems incorrect.
+</Accordion>
+
+<Accordion title="I can't save my assessment to a project">
+  The ability to save assessment history to projects depends on your plan:
+
+  - **Free plan** — limited to **2 projects** and does not save assessment history within those projects.
+  - **Pro plan and above** — full assessment history is saved automatically to projects.
+
+  If you're on the Free plan and need to save your results, [upgrade to Pro](https://sengol.ai/pricing) ($49/month) to unlock assessment history, up to 20 projects, and PDF/Excel exports.
+
+  <Tip>
+    After upgrading, your next completed assessment will be automatically saved. Previous free-plan results are not retroactively stored.
+  </Tip>
+</Accordion>
+
+---
+
+## Reports & Exports
+
+<Accordion title="The PDF export button is greyed out">
+  PDF export is available on the **Pro plan ($49/month) and above**. If the button appears greyed out, your account is on the Free plan, which does not include report exports.
+
+  To unlock PDF and Excel exports, [upgrade your plan](https://sengol.ai/pricing). Upgrades take effect immediately, so you can export your existing assessment results right away.
+</Accordion>
+
+<Accordion title="My PDF report is taking too long to generate">
+  PDF reports typically generate within **30–60 seconds**, depending on the size and complexity of the assessment.
+
+  - **Don't close or navigate away** from the browser tab while the report is generating — doing so will interrupt the process.
+  - **Wait at least 2 minutes** before assuming the export has failed.
+  - If the report still hasn't downloaded after 2 minutes, dismiss the export dialog and **try again**. A transient server issue is usually the cause.
+
+  If repeated attempts fail, contact [support@sengol.ai](mailto:support@sengol.ai) with your assessment ID.
+
+  <Warning>
+    Closing the browser tab or navigating away during PDF generation will cancel the export. You'll need to start the export again.
+  </Warning>
+</Accordion>
+
+<Accordion title="The Excel file won't open correctly">
+  Sengol's Excel exports use the modern **.xlsx format**. If the file isn't opening or displaying correctly:
+
+  - **Check your software version** — you need **Microsoft Excel 2016 or later**, or **Google Sheets** (which supports .xlsx natively).
+  - **Avoid older applications** — Excel 2013 and earlier, LibreOffice Calc on older versions, or Apple Numbers may not render all formatting correctly.
+  - **Re-download the file** — if the download was interrupted, the file may be corrupted. Export again from your [dashboard](https://sengol.ai/dashboard).
+
+  If you continue to see display issues with supported software, email [support@sengol.ai](mailto:support@sengol.ai) with details of the application and version you're using.
+</Accordion>
+
+---
+
+## API
+
+<Accordion title="I'm getting 401 Unauthorized errors">
+  A `401 Unauthorized` response means the server could not authenticate your request. Check the following:
+
+  <Steps>
+    <Step title="Verify your API key">
+      Confirm you're using the correct API key from your account settings. API access requires either an **Enterprise plan** or an active **API add-on** on your current plan.
+    </Step>
+    <Step title="Check the Authorization header format">
+      Your API key must be passed in the `Authorization` header using the **Bearer token** scheme:
+      ```
+      Authorization: Bearer YOUR_API_KEY
+      ```
+      Ensure there are no extra spaces, newline characters, or encoding issues in the key string.
+    </Step>
+    <Step title="Check for key expiry">
+      If your API key has been rotated or revoked, generate a new one from your account settings and update your integration.
+    </Step>
+  </Steps>
+</Accordion>
+
+<Accordion title="I'm hitting rate limits">
+  Sengol enforces rate limits to ensure platform stability for all users:
+
+  | API Tier       | Rate Limit          |
+  |----------------|---------------------|
+  | Growth API     | 500 requests/hour   |
+  | Enterprise API | 2,000 requests/hour |
+
+  If you're exceeding your tier's limit, your requests will receive a `429 Too Many Requests` response. To handle this gracefully:
+
+  - **Implement exponential backoff** — wait progressively longer between retries after receiving a 429.
+  - **Cache responses** where appropriate to reduce redundant API calls.
+  - **Batch requests** if your use case allows it.
+
+  If your workload consistently requires more than your current limit, [contact the Sengol sales team](mailto:support@sengol.ai) to discuss higher limits or a custom Enterprise arrangement.
+</Accordion>
+
+<Accordion title="My API key isn't working">
+  If your API key is being rejected even though it appears correct, check the following:
+
+  - **Plan compatibility** — the REST API is included on the **Enterprise plan** and is also available as an add-on for other tiers. Without an active Enterprise subscription or an API add-on, your key will not grant API access. Verify your plan at [sengol.ai/pricing](https://sengol.ai/pricing).
+  - **Key source** — make sure you're copying the key directly from your **account settings** page, not from a previous environment, `.env` file, or documentation example.
+  - **Key rotation** — if a colleague has rotated the key since you last used it, you'll need the updated key.
+
+  <Note>
+    If you recently upgraded to Enterprise, allow a few minutes for your API access to be fully provisioned before testing your key.
+  </Note>
+</Accordion>
+
+---
+
+## Contact Support
+
+If you've worked through the relevant steps above and still need help, the Sengol support team is ready to assist. Reach out by email at **[support@sengol.ai](mailto:support@sengol.ai)**.
+
+<Note>
+  Include your **account email**, the **assessment ID or project name**, and a **description of the issue** in your message. This helps the support team investigate and respond as quickly as possible.
+</Note>

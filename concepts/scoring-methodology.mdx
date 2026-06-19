@@ -1,0 +1,132 @@
+---
+title: "How Sengol Calculates AI Risk Scores: Scoring Methodology"
+sidebarTitle: "Methodology"
+description: "Learn how Sengol calculates risk scores using composite weighting, incident matching, and relevance scoring from 100,000+ real-world AI failures."
+---
+
+Sengol's risk scores are grounded in evidence, not heuristics. Instead of applying generic checklists, Sengol matches your system's profile against a continuously updated database of over 100,000 real-world AI incidents drawn from 200+ sources across 40+ jurisdictions. Every score is traceable — you can inspect which incidents drove it, how they were matched, and how much each contributed to your final result. This page explains the mechanics behind that calculation so you can understand, trust, and act on your scores with confidence.
+
+## The composite weight formula
+
+Every risk factor Sengol evaluates carries a **final weight** that determines how much it contributes to your overall score. That weight is not static — it is computed from three inputs specific to your context:
+
+```
+finalWeight = (baseWeight × 0.5) + (evidenceWeight × 0.3) + (industryWeight × 0.2)
+```
+
+| Component | Weight | What it represents |
+|-----------|--------|--------------------|
+| **Base Weight** | 50% | The inherent priority of this risk factor given your system's core characteristics — use case, data sensitivity, and architectural decisions |
+| **Evidence Weight** | 30% | How frequently this specific failure pattern appears in matched incidents from Sengol's database — the more incidents, the higher the weight |
+| **Industry Weight** | 20% | Sector-specific relevance, calibrated to failure rates and regulatory exposure patterns observed within your industry vertical |
+
+The formula ensures that your scores are grounded in your actual context (base weight), validated by empirical incident data (evidence weight), and adjusted for industry norms (industry weight) — rather than relying on any single input alone.
+
+## The 5-step scoring process
+
+<Steps>
+  <Step title="Context Collection">
+    Sengol begins by gathering the facts needed to search and weight incidents accurately. The questionnaire collects:
+
+    - **Industry & use case:** The sector you operate in and the specific function your AI system performs (e.g., healthcare diagnostic assistance, financial fraud detection)
+    - **Technology stack:** ML frameworks, cloud providers, inference infrastructure, and pre-trained models or APIs in use
+    - **Data sensitivity:** Types of data processed — PII, PHI, financial records, biometric data — and their volumes
+    - **Team & budget profile:** Engineering maturity, dedicated ML ops resources, and available remediation budget
+    - **Existing controls:** Security tools, compliance programs, monitoring systems, and governance policies already in place
+
+    The questionnaire adapts dynamically as you answer — early responses narrow the scope of subsequent questions, so you spend time only on areas relevant to your specific deployment.
+  </Step>
+
+  <Step title="Incident Matching">
+    With your context in hand, Sengol searches its database of 100,000+ incidents to identify the subset most relevant to your system. The matching engine filters by:
+
+    - **Industry alignment:** Incidents involving systems in the same or closely adjacent sectors
+    - **Use case similarity:** Functional overlap between your system's purpose and the incident's affected system
+    - **Technology overlap:** Shared frameworks, cloud providers, model types, or data modalities
+    - **Scale proximity:** Incidents from systems of comparable scale, user base, or transaction volume
+    - **Control gap correlation:** Incidents that exploited weaknesses similar to those identified in your answers
+
+    This produces a candidate incident set that forms the empirical foundation for your score.
+  </Step>
+
+  <Step title="Relevance Scoring">
+    Each matched incident is individually scored on a 0–100% relevance scale based on how closely it maps to your system profile. The scoring tiers are:
+
+    | Relevance | Tier | Meaning |
+    |-----------|------|---------|
+    | **90–100%** | Direct match | Near-identical system type, industry, and failure mode — highest weight in score calculation |
+    | **70–89%** | High similarity | Strong overlap across most matching dimensions — significant weight |
+    | **50–69%** | Moderate similarity | Meaningful overlap in key dimensions — moderate weight |
+    | **30–49%** | General relevance | Partial overlap — low weight, used for breadth coverage |
+    | **< 30%** | Excluded | Insufficient similarity — removed from calculation to avoid noise |
+
+    This tiering ensures that directly comparable incidents drive your score while still capturing broader risk signals from partially similar cases.
+  </Step>
+
+  <Step title="Risk Calculation">
+    Sengol aggregates the weighted incident set into a structured risk output across five dimensions:
+
+    - **Likelihood Score:** The probability of a failure occurring given your control posture, calibrated against incident frequency in matched cases
+    - **Impact Score:** The expected severity of failure — financial loss, user harm, reputational damage — based on outcomes in matched incidents
+    - **Financial Risk:** An indicative range for direct and indirect costs associated with the failure modes identified
+    - **Regulatory Risk:** The probability of regulatory violation or enforcement action given your compliance posture and matched incidents involving regulatory outcomes
+    - **Overall Score (0–100):** The composite score combining all four risk categories — Performance, Security, Compliance, and Operational — using the `finalWeight` formula applied to each contributing factor
+
+    All five dimensions feed into the breakdown you see in your assessment report.
+  </Step>
+
+  <Step title="Attribution & Transparency">
+    Sengol does not produce a black-box score. Every report includes full attribution for the top 10 incidents that most influenced your result. For each attributed incident, you can view:
+
+    - The incident summary and source
+    - The specific match factors that linked it to your system
+    - The relevance tier and percentage score assigned
+    - The weight contribution to your final score
+
+    This transparency lets your team validate the score, challenge assumptions, and use the incident evidence directly in your own risk documentation or board-level reporting.
+  </Step>
+</Steps>
+
+## Quality & accuracy
+
+Sengol's methodology is only as reliable as the data and validation behind it. Key quality metrics:
+
+<CardGroup cols={2}>
+  <Card title="89.3% Prediction Accuracy" icon="bullseye">
+    Sengol's scoring model has been validated against known outcomes — assessing systems where post-deployment failures were later recorded — with an 89.3% accuracy rate in identifying the risk categories that subsequently materialized.
+  </Card>
+
+  <Card title="95%+ Source Reliability" icon="shield-check">
+    Every source in the incident database is rated for reliability. Sources falling below 95% reliability are weighted down or excluded. The database draws from incident registries, regulatory enforcement records, academic publications, and verified news sources.
+  </Card>
+
+  <Card title="200+ Active Sources" icon="rss">
+    Sengol monitors more than 200 active sources across 40+ jurisdictions — covering AI incident registries, national regulatory databases, CVE feeds, and sector-specific security advisories — to ensure broad coverage with minimal geographic or industry blind spots.
+  </Card>
+
+  <Card title="Continuous Updates" icon="rotate">
+    The incident database receives daily ingestion with real-time processing for high-severity events. When a significant new incident is added, scores for systems with high relevance to that incident are flagged for re-assessment, keeping your risk posture current.
+  </Card>
+</CardGroup>
+
+## Limitations
+
+No scoring methodology is without constraints. Understanding these limitations helps you apply Sengol's scores appropriately.
+
+<Accordion title="Historical Data Bias">
+  The incident database reflects failures that have been reported and recorded. Novel failure modes with no prior history — particularly in emerging AI architectures — will produce lower evidence weights not because the risk is absent, but because comparable incidents don't yet exist. Use low evidence weight scores as a prompt to apply precautionary controls, not as evidence of safety.
+</Accordion>
+
+<Accordion title="Reporting Bias">
+  AI incidents are not uniformly reported. High-profile failures at large companies, incidents in regulated industries (healthcare, finance), and incidents in English-speaking jurisdictions are over-represented relative to their actual frequency. Sengol applies source diversity weighting to mitigate this, but some geographic and sector blind spots remain.
+</Accordion>
+
+<Accordion title="Context Limits">
+  The questionnaire captures your system's context with meaningful depth, but no assessment can fully represent the complexity of a production deployment. Undisclosed architectural details, informal practices, or novel integrations that fall outside the questionnaire's scope may leave risk signals undetected. Treat the assessment as a rigorous starting point, not an exhaustive audit.
+</Accordion>
+
+<Accordion title="No Guarantees">
+  A low Sengol score does not guarantee that your system will not fail or that you are compliant with applicable law. Scores are probabilistic estimates based on historical evidence. They should inform — and be combined with — independent technical review, legal advice, and ongoing monitoring.
+</Accordion>
+
+To understand how these scores are broken down by category and what you receive in your final report, see [Risk Scores](/concepts/risk-scores).

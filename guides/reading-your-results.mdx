@@ -1,0 +1,116 @@
+---
+title: "How to Read and Act on Your Sengol Risk Assessment Results"
+sidebarTitle: "Your Results"
+description: "Understand your Sengol risk score, interpret the four category breakdowns, and turn mitigation recommendations into an action plan for your AI project."
+---
+
+After you submit a risk assessment, Sengol generates a comprehensive results page that gives you a complete picture of your AI system's pre-deployment risk posture. The page includes your overall risk score, a breakdown across four risk categories, your top five prioritized risks with mitigation recommendations, and evidence from real-world AI incidents that match your profile.
+
+## Overall risk score
+
+Your overall risk score is a single number between 0 and 100, calculated as a weighted aggregate of your four category scores. It represents the severity of your AI system's risk profile at the time of assessment.
+
+<CardGroup cols={2}>
+  <Card title="0–30: Low Risk" icon="circle-check" iconType="solid">
+    Your system has **minor gaps** and a good baseline security and compliance posture. Focus on maintaining controls and monitoring for drift.
+  </Card>
+  <Card title="31–60: Moderate Risk" icon="circle-exclamation" iconType="solid">
+    **Specific areas need attention** before deployment. Review your category breakdowns to identify which dimensions are driving the score.
+  </Card>
+  <Card title="61–80: High Risk" icon="triangle-exclamation" iconType="solid">
+    Your system has **significant gaps** that should be addressed before going live. Prioritize your top risks and begin remediation immediately.
+  </Card>
+  <Card title="81–100: Critical Risk" icon="circle-xmark" iconType="solid">
+    **Major remediation is required.** Deployment is not recommended until critical findings are resolved. Escalate to your leadership and compliance teams.
+  </Card>
+</CardGroup>
+
+## Category breakdowns
+
+Below your overall score, Sengol displays four individual category scores. Each runs on the same 0–100 scale, giving you a precise view of where your system is strongest and where the most urgent work is needed.
+
+<Tabs>
+  <Tab title="Performance Risk">
+    **Performance Risk** measures the reliability and scalability of your AI system under real-world conditions. This category evaluates:
+
+    - **Accuracy and model quality** — how well your model performs on its intended task, including error rates and edge case handling
+    - **Latency** — whether your system meets response-time requirements under expected and peak load
+    - **Scalability** — how the system behaves as user volume and data volume grow
+
+    A high Performance Risk score often indicates insufficient load testing, unclear accuracy benchmarks, or an absence of performance monitoring in production.
+  </Tab>
+  <Tab title="Security Risk">
+    **Security Risk** reflects the protection of your data and models against threats. This category evaluates:
+
+    - **Data protection** — encryption at rest and in transit, access controls, data minimization practices
+    - **Adversarial robustness** — your system's resilience against prompt injection, adversarial examples, model inversion, and data poisoning
+
+    A high Security Risk score typically points to gaps in access control, unencrypted data pipelines, or a lack of adversarial testing.
+  </Tab>
+  <Tab title="Compliance Risk">
+    **Compliance Risk** measures your alignment with applicable regulations and internal governance standards. This category evaluates:
+
+    - **Regulatory alignment** — coverage of relevant frameworks such as the EU AI Act, GDPR, CCPA, HIPAA, or sector-specific regulations
+    - **Bias and fairness** — whether you've conducted bias testing, fairness evaluations, or disparity impact assessments
+
+    A high Compliance Risk score may indicate missing documentation, untested fairness criteria, or gaps in regulatory coverage for the jurisdictions you operate in.
+  </Tab>
+  <Tab title="Operational Risk">
+    **Operational Risk** captures the human, process, and infrastructure factors that determine whether your AI system can be operated safely over time. This category evaluates:
+
+    - **Team expertise** — the AI/ML knowledge of the team responsible for deployment and maintenance
+    - **Infrastructure** — the robustness of your deployment environment, including failover and redundancy
+    - **Monitoring and incident response** — whether you have alerting, observability tooling, and a defined incident response playbook
+    - **Maintenance plan** — how you manage model drift, retraining schedules, and dependency updates
+
+    A high Operational Risk score often surfaces when teams are deploying AI without dedicated MLOps or AI governance processes in place.
+  </Tab>
+</Tabs>
+
+## Top 5 risks
+
+Sengol identifies your five most significant risks and displays them in order of severity. For each risk, you'll see:
+
+- **Risk name** — a concise label identifying the specific vulnerability or gap
+- **Severity** — rated Critical, High, Moderate, or Low
+- **Description** — a plain-language explanation of why this is a risk in the context of your specific answers
+- **Recommended mitigation action** — a concrete step you can take to reduce or eliminate the risk
+- **Estimated cost range** — an approximate cost to implement the recommended mitigation, helping you prioritize and budget
+
+Use this list as the starting point for your remediation planning. The risks are ordered by potential impact — address Critical and High severity findings first.
+
+## Evidence-based insights
+
+One of Sengol's most distinctive features is the evidence layer. Below your top risks, you'll find the **top 10 real-world AI incidents** whose profiles most closely match yours. For each incident, you'll see:
+
+- **Incident ID** — a unique reference identifier for the incident
+- **Company or organization** involved
+- **Date** of the incident
+- **Failure type** — what went wrong (e.g., bias failure, data breach, model hallucination, system outage)
+- **Match factors** — the specific attributes of your assessment that align with this incident's risk profile
+- **Relevance score** — how closely the incident matches your configuration
+
+These incidents are not theoretical — they're drawn from documented AI failures and regulatory actions. Use them to ground your internal risk conversations with concrete precedent and to demonstrate to stakeholders why mitigation matters.
+
+## Building an action plan
+
+Your results are most valuable when they drive concrete action. Use the following workflow to move from assessment findings to a tracked remediation plan.
+
+<Steps>
+  <Step title="Prioritize your top 3–5 risks">
+    Start with the risks rated Critical or High in your Top 5 list. If all five are the same severity, use the evidence relevance scores to rank them — the risks with the closest real-world matches are your highest-priority items.
+  </Step>
+  <Step title="Assign owners for each risk">
+    Each risk and its mitigation action should have a named owner — the person responsible for driving resolution. Align ownership with expertise: your security lead should own Security Risk items, your compliance officer should own Compliance Risk items, and so on.
+  </Step>
+  <Step title="Set a target remediation date">
+    For each risk, establish a realistic deadline based on the estimated cost, complexity, and your deployment timeline. Critical findings should be resolved before go-live; Moderate findings can follow on a post-launch roadmap.
+  </Step>
+  <Step title="Re-run the assessment to track progress">
+    After implementing mitigations, run a new assessment in the same project to measure improvement. Your project history tracks score changes over time, giving you and your stakeholders a clear record of progress.
+  </Step>
+</Steps>
+
+<Note>
+  Sengol recommends **quarterly re-assessments** as a baseline cadence. Run additional assessments after significant architecture changes, when entering new jurisdictions, or following any AI-related incident — even minor ones.
+</Note>

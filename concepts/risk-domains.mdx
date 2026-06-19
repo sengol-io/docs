@@ -1,0 +1,63 @@
+---
+title: "Sengol AI Risk Domains: Five Assessment Categories"
+sidebarTitle: "Risk Domains"
+description: "Sengol evaluates AI risk across five domains: AI/ML, Cybersecurity, Cloud Infrastructure, Data Governance, and Supply Chain. Learn what each domain covers."
+---
+
+Risk domains are the structured lenses through which Sengol examines your AI system before deployment. Rather than treating risk as a single monolithic score, Sengol evaluates five distinct domains — each representing a critical failure surface unique to production AI. This multi-domain approach ensures that gaps in model behavior, infrastructure security, regulatory compliance, data handling, and vendor dependencies are all surfaced before they become live incidents.
+
+## The five risk domains
+
+<CardGroup cols={1}>
+  <Card title="AI/ML" icon="brain">
+    The AI/ML domain assesses the technical integrity of your model itself — how it behaves under real-world conditions and adversarial pressure.
+
+    - **Model robustness & bias detection:** Evaluates whether your model performs equitably across demographic groups and degrades gracefully under distribution shift
+    - **Adversarial resilience:** Tests susceptibility to prompt injection, data poisoning, model inversion, and evasion attacks
+    - **Explainability:** Assesses whether predictions can be interpreted and justified to regulators, auditors, and end users
+  </Card>
+
+  <Card title="Cybersecurity" icon="shield-halved">
+    The Cybersecurity domain examines the protective controls surrounding your AI system and the data it processes.
+
+    - **Access controls & encryption:** Reviews authentication mechanisms, role-based permissions, and encryption at rest and in transit
+    - **Incident response:** Evaluates the maturity of your detection, containment, and recovery procedures for AI-specific threats
+    - **Vulnerability management:** Assesses patching cadences, dependency scanning, and exposure to known CVEs in your ML stack
+  </Card>
+
+  <Card title="Cloud Infrastructure" icon="cloud">
+    The Cloud Infrastructure domain focuses on the environment hosting your AI workloads and the controls governing it.
+
+    - **Configuration security:** Identifies misconfigured storage buckets, over-permissive IAM roles, and insecure default settings common in ML pipelines
+    - **Identity & access management:** Reviews service account hygiene, least-privilege enforcement, and federated identity patterns
+    - **Network segmentation:** Evaluates isolation between training, inference, and data environments to limit blast radius from a breach
+  </Card>
+
+  <Card title="Data Governance" icon="database">
+    The Data Governance domain examines how your system handles the data it ingests, processes, stores, and transmits.
+
+    - **Classification & retention:** Reviews whether training and inference data is appropriately classified, retained, and deleted per policy
+    - **Consent management:** Assesses whether personal data used for training or inference has valid legal basis and honors subject rights
+    - **Cross-border data transfers:** Identifies whether data flows across jurisdictions without adequate transfer mechanisms (e.g., SCCs, BCRs)
+  </Card>
+
+  <Card title="Supply Chain" icon="link">
+    The Supply Chain domain assesses the third-party components, vendors, and dependencies your AI system relies on.
+
+    - **Vendor assessment & fourth-party risk:** Evaluates the security posture of your model providers, data suppliers, and infrastructure vendors — including their own dependencies
+    - **Dependency scanning:** Reviews open-source libraries, pre-trained model weights, and APIs for known vulnerabilities and license risk
+    - **SBOM management:** Assesses whether you maintain an accurate Software Bill of Materials covering ML frameworks, datasets, and third-party models
+  </Card>
+</CardGroup>
+
+## How domains relate to risk scores
+
+Every domain you're assessed against feeds directly into your overall risk profile. Sengol does not apply a one-size-fits-all questionnaire — questions are tailored to your specific industry vertical and technology stack. A fintech company deploying a fraud detection model will receive a different weighting of Supply Chain and Cybersecurity questions than a healthcare provider deploying a diagnostic assistant.
+
+Within each domain, Sengol matches your answers against a database of 100,000+ real-world AI incidents. The frequency and severity of incidents similar to your system's profile determine how much each domain contributes to your four scored risk categories: Performance, Security, Compliance, and Operational. A domain with a high concentration of matching incidents will raise the relevant category scores accordingly.
+
+<Tip>
+  Sengol's questionnaire adapts based on your answers — if you're in healthcare, Data Governance and Compliance questions are weighted more heavily to reflect the higher regulatory exposure of health AI systems under HIPAA and the EU AI Act.
+</Tip>
+
+To understand how domain signals are translated into numerical scores, see [Risk Scores](/concepts/risk-scores).

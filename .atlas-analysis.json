@@ -1,0 +1,105 @@
+{
+  "projectType": "saas",
+  "projectName": "Sengol",
+  "projectDescription": "Sengol is an AI-powered pre-deployment risk assessment and compliance platform that delivers quantitative risk scores across five domains, backed by 100,000+ real-world security incidents from 40+ jurisdictions.",
+  "theme": "luma",
+  "primaryColor": "#304688",
+  "lightColor": "#85aac7",
+  "darkColor": "#dde2ec",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "introduction",
+              "quickstart",
+              "plans-and-pricing"
+            ]
+          },
+          {
+            "group": "Core Concepts",
+            "pages": [
+              "concepts/risk-domains",
+              "concepts/risk-scores",
+              "concepts/compliance-frameworks",
+              "concepts/scoring-methodology"
+            ]
+          },
+          {
+            "group": "Platform",
+            "pages": [
+              "platform/risk-assessment",
+              "platform/compliance-dashboard",
+              "platform/incident-intelligence",
+              "platform/projects"
+            ]
+          },
+          {
+            "group": "Guides",
+            "pages": [
+              "guides/first-assessment",
+              "guides/reading-your-results",
+              "guides/team-collaboration",
+              "guides/exporting-reports"
+            ]
+          },
+          {
+            "group": "Help",
+            "pages": [
+              "help/faq",
+              "help/troubleshooting"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "api/overview",
+              "api/authentication"
+            ]
+          },
+          {
+            "group": "Endpoints",
+            "pages": [
+              "api/assessments",
+              "api/projects",
+              "api/risk-scores",
+              "api/reports"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "Pre-deployment AI risk assessment across Performance, Security, Compliance, and Operational dimensions",
+    "Evidence-based scoring from 100,000+ real-world security incidents",
+    "Compliance validation for EU AI Act, GDPR, HIPAA, SOC 2, ISO 42001, NIST AI RMF, and 40+ jurisdictions",
+    "Five risk domains: AI/ML, Cybersecurity, Cloud Infrastructure, Data Governance, Supply Chain",
+    "PDF and Excel export of professional audit-ready reports",
+    "Team collaboration with shared projects and assessments",
+    "REST API access for integrating risk intelligence into applications",
+    "Real-time incident intelligence from 200+ global sources",
+    "Board-level compliance dashboard with trending and benchmarking",
+    "AI Review Board with multi-model analysis (Team plan+)"
+  ],
+  "publicApiSurface": [
+    "REST API: POST /assessments — start a new risk assessment",
+    "REST API: GET /assessments/{id} — retrieve assessment results and risk scores",
+    "REST API: GET /projects — list projects",
+    "REST API: POST /projects — create a project",
+    "REST API: GET /projects/{id}/assessments — list assessments for a project",
+    "REST API: GET /risk-scores/{assessmentId} — get detailed risk scores breakdown",
+    "REST API: GET /reports/{assessmentId} — export assessment report (PDF/Excel)",
+    "Risk score dimensions: performance, security, compliance, operational (0-100 scale)",
+    "Compliance frameworks: EU AI Act, GDPR, CCPA, HIPAA, SOC 2, ISO 27001, ISO 42001, PCI-DSS, NIST AI RMF",
+    "Rate limits: Growth API 500 req/hour, Enterprise API 2,000 req/hour"
+  ]
+}

@@ -1,0 +1,93 @@
+---
+title: "Sengol REST API Overview and Getting Started"
+sidebarTitle: "Overview"
+description: "The Sengol REST API gives programmatic access to risk assessments, projects, risk scores, and reports. Available on Enterprise plans with JSON responses."
+---
+
+The Sengol REST API lets you integrate AI-powered pre-deployment risk assessments directly into your development workflows. You can programmatically start assessments, retrieve risk scores, manage projects, and download compliance reports — all without leaving your own tooling or CI/CD pipeline.
+
+## Base URL
+
+All API requests are made over HTTPS to the following base URL:
+
+```
+https://api.sengol.ai/v1
+```
+
+Every endpoint path in this documentation is relative to this base URL.
+
+## Authentication
+
+The Sengol API uses Bearer token authentication. You must include your API key in the `Authorization` header of every request. See the [Authentication guide](/api/authentication) for instructions on generating and using API keys.
+
+## Rate Limits
+
+Your request rate limit depends on your plan. When you exceed the limit, the API returns a `429` status code with the `rate_limit_exceeded` error code.
+
+| Plan | Request Limit |
+|---|---|
+| Growth API add-on | 500 requests / hour |
+| Enterprise API add-on | 2,000 requests / hour |
+
+Every API response includes the following headers so you can track your usage:
+
+| Header | Description |
+|---|---|
+| `X-RateLimit-Limit` | Maximum requests allowed in the current window |
+| `X-RateLimit-Remaining` | Requests remaining in the current window |
+| `X-RateLimit-Reset` | Unix timestamp when the current window resets |
+
+## Response Format
+
+All API responses return JSON. Successful responses wrap the primary payload in a `data` key alongside a `meta` object containing the request ID and timestamp. Error responses follow a consistent structure with a top-level `error` key.
+
+```json
+// Success
+{
+  "data": { ... },
+  "meta": {
+    "requestId": "req_01HX9KZMQ3BFPV2NTW8YCEJ5D",
+    "timestamp": "2025-01-15T10:30:00Z"
+  }
+}
+```
+
+```json
+// Error
+{
+  "error": {
+    "code": "invalid_api_key",
+    "message": "The provided API key is invalid or expired."
+  }
+}
+```
+
+## Error Codes
+
+The table below lists all error codes you may encounter across the API.
+
+| Code | HTTP Status | Description |
+|---|---|---|
+| `invalid_api_key` | 401 | The API key is invalid or has expired |
+| `missing_api_key` | 401 | No `Authorization` header was included in the request |
+| `insufficient_permissions` | 403 | Your plan does not include API access |
+| `rate_limit_exceeded` | 429 | You have exceeded your plan's request rate limit |
+| `not_found` | 404 | The requested resource does not exist |
+| `validation_error` | 422 | The request body failed schema validation |
+| `internal_error` | 500 | An unexpected server error occurred |
+
+<Note>
+  API access is included on the Enterprise plan, or available as an add-on on Growth (+$199/mo, 500 req/hr) and Enterprise (+$499/mo, 2,000 req/hr) plans. See [Plans and Pricing](/plans-and-pricing) for details.
+</Note>
+
+<CardGroup cols={3}>
+  <Card title="Authentication" icon="key" href="/api/authentication">
+    Generate API keys and authenticate your requests
+  </Card>
+  <Card title="Assessments" icon="shield-check" href="/api/assessments">
+    Start and retrieve AI risk assessments
+  </Card>
+  <Card title="Projects" icon="folder-open" href="/api/projects">
+    Organize assessments into projects
+  </Card>
+</CardGroup>

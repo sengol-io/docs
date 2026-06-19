@@ -1,0 +1,81 @@
+---
+title: "How to Run Your First AI Risk Assessment with Sengol"
+sidebarTitle: "First Assessment"
+description: "Step-by-step guide to completing your first Sengol risk assessment. Learn what to prepare, how the questionnaire works, and what your results contain."
+---
+
+This guide walks you through running your first AI risk assessment on Sengol from start to finish. The process takes between 5 and 20 minutes depending on the complexity of your AI system, and at the end you'll receive a scored risk profile across four key categories along with prioritized mitigation recommendations.
+
+## What you'll need to know
+
+Before you begin, gather the following information about your AI project. Having these details on hand helps you answer questions accurately and ensures your results are as relevant as possible.
+
+<CardGroup cols={2}>
+  <Card title="About your organization" icon="building">
+    - Your **industry sector** (e.g., healthcare, finance, retail, government)
+    - The **jurisdiction(s)** where you operate or deploy the AI system
+    - Your **team size** and the AI/ML expertise level of your staff
+  </Card>
+  <Card title="About your AI system" icon="microchip-ai">
+    - Your **AI use case** — for example, content generation, decision automation, or recommendation system
+    - The **AI models and frameworks** you're using (e.g., OpenAI GPT-4, PyTorch, Hugging Face)
+    - Your **approximate user base size**
+  </Card>
+  <Card title="About your data" icon="database">
+    - The **data sensitivity level** of your inputs and outputs — public, internal, PII, financial, or health data
+    - Any **existing security controls** in place, such as encryption, access policies, or penetration testing
+  </Card>
+  <Card title="About your compliance posture" icon="shield-check">
+    - **Compliance certifications** you currently hold (e.g., SOC 2, ISO 27001, HIPAA)
+    - Any **regulatory frameworks** that apply to your use case (e.g., EU AI Act, GDPR, CCPA)
+  </Card>
+</CardGroup>
+
+## Starting the assessment
+
+<Steps>
+  <Step title="Log in to your dashboard">
+    Go to [https://sengol.ai/dashboard](https://sengol.ai/dashboard) and sign in to your Sengol account. If you don't have an account yet, create one for free — no credit card required.
+  </Step>
+  <Step title="Open the risk assessment tool">
+    Click **Start Risk Assessment** from the dashboard home, or navigate directly to [https://sengol.ai/tools/risk/assess](https://sengol.ai/tools/risk/assess).
+  </Step>
+  <Step title="Select or create a project">
+    On paid plans, you can save your assessment to a project for future reference and progress tracking. Select an existing project from the dropdown or click **New Project** to create one. Free plan users can still complete and view assessments without saving to a project.
+  </Step>
+  <Step title="Begin the questionnaire">
+    Click **Start Assessment** to begin. The questionnaire adapts dynamically based on your responses — if you indicate you're in the healthcare sector, for example, you'll see additional questions relevant to HIPAA and clinical AI governance.
+  </Step>
+</Steps>
+
+## Answering the questionnaire
+
+The assessment is organized into four question groups, each targeting a distinct dimension of AI risk. You'll move through them in order, though the number of questions in each group varies based on your earlier answers.
+
+<Accordion title="System Profile">
+  This group establishes the foundation of your risk assessment. You'll describe your industry, specific AI use case, deployment scale, and the models and frameworks in your tech stack. These answers determine which risk categories receive the most weight in your final score.
+</Accordion>
+
+<Accordion title="Security & Data">
+  Here you'll detail the types of data your system processes, your access control policies, encryption practices, and how you've addressed model robustness — including adversarial inputs and data poisoning risks. If you handle PII, financial, or health data, expect more granular questions in this section.
+</Accordion>
+
+<Accordion title="Compliance & Governance">
+  This group covers the regulatory landscape you operate in, your audit and documentation requirements, and whether you've conducted bias testing or fairness evaluations. You'll be asked which compliance frameworks apply and what evidence you have of compliance activities.
+</Accordion>
+
+<Accordion title="Operations">
+  The final group focuses on the human and infrastructure side of AI risk. You'll answer questions about your team's AI/ML expertise, your monitoring and alerting setup, your incident response plan, and your long-term model maintenance and retraining strategy.
+</Accordion>
+
+<Tip>
+  Answer honestly about your **current state**, not your aspirational state. The more accurate your answers, the more relevant your risk score and mitigation recommendations. If a control is planned but not yet implemented, mark it as not in place.
+</Tip>
+
+## Completing the assessment
+
+Work through all four question groups at your own pace — the questionnaire auto-saves your progress so you can return to it if needed. Most users complete it in **5 to 20 minutes**. More complex systems with multiple use cases or jurisdictions will take longer.
+
+When you've answered all questions, click **Submit Assessment**. Sengol processes your responses and generates your full risk profile — typically within a few seconds. You'll be taken directly to your results page showing your overall risk score, category breakdowns, top 5 risks, and evidence-based insights.
+
+Once you have your results, the next step is understanding what they mean and building a plan to act on them. See [Reading Your Results](/guides/reading-your-results) for a detailed walkthrough of your risk score and how to turn findings into an action plan.

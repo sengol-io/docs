@@ -1,0 +1,94 @@
+---
+title: "Understanding Sengol AI Risk Scores (0–100 Scale)"
+sidebarTitle: "Risk Scores"
+description: "Sengol risk scores range from 0 to 100 across four categories. Higher scores mean higher risk. Learn how to interpret scores and prioritize mitigation."
+---
+
+Sengol risk scores give you a precise, evidence-backed measure of how likely your AI system is to fail — and how severely — across four critical dimensions. Every score runs on a 0–100 scale where **higher always means higher risk**. A score of 0 does not mean zero risk exists; it means Sengol found no significant signal from matching incidents or identified control gaps. Use scores to compare deployment readiness across systems, track improvement over time, and prioritize which gaps to close first.
+
+## The four risk categories
+
+<CardGroup cols={2}>
+  <Card title="Performance Risk" icon="gauge-high">
+    Measures the probability that your model will fail to meet its functional requirements in production.
+
+    - Model accuracy degradation and concept drift over time
+    - Latency and throughput under peak load conditions
+    - Scalability limits and failure modes at scale
+    - Behavioral consistency across edge cases and adversarial inputs
+  </Card>
+
+  <Card title="Security Risk" icon="lock">
+    Measures exposure to threats targeting your model, its data, and the infrastructure it runs on.
+
+    - Data protection controls and encryption coverage
+    - Model robustness against adversarial attacks and prompt injection
+    - Vulnerability exposure in your ML stack and dependencies
+    - Access control maturity for model endpoints and training data
+  </Card>
+
+  <Card title="Compliance Risk" icon="scale-balanced">
+    Measures the probability that your system violates applicable regulations or internal governance policies.
+
+    - Coverage of regulatory requirements relevant to your jurisdiction and use case
+    - Data privacy obligations (consent, retention, cross-border transfers)
+    - Bias, fairness, and explainability requirements under emerging AI law
+    - Audit trail completeness for high-risk AI decisions
+  </Card>
+
+  <Card title="Operational Risk" icon="screwdriver-wrench">
+    Measures the readiness of your team and processes to deploy, monitor, and sustain the system safely.
+
+    - Team expertise and ML engineering maturity
+    - Infrastructure reliability and disaster recovery coverage
+    - Monitoring, alerting, and observability for model behavior
+    - Incident response procedures specific to AI failure modes
+  </Card>
+</CardGroup>
+
+## Interpreting your score
+
+Use the following bands to orient your response. Scores within the same band still carry meaningful differences — a 78 warrants more urgency than a 63 — but the bands give you a deployment-readiness signal at a glance.
+
+| Score | Risk Level | What it means |
+|-------|------------|---------------|
+| **0–30** | 🟢 Low | Strong overall posture. Minor gaps exist but are unlikely to block deployment. Prioritize monitoring and continuous improvement. |
+| **31–60** | 🟡 Moderate | Specific areas need attention before or shortly after deployment. Mitigation is achievable with targeted effort. |
+| **61–80** | 🟠 High | Significant control gaps that may block deployment or create unacceptable liability. Remediation should precede go-live. |
+| **81–100** | 🔴 Critical | Major failures in foundational controls. Do not deploy until substantial remediation is complete and re-assessed. |
+
+## What you receive from an assessment
+
+Every completed Sengol assessment produces a structured report you can share with engineering, legal, and leadership stakeholders. The report includes:
+
+<CardGroup cols={2}>
+  <Card title="Overall Risk Score" icon="circle-half-stroke">
+    A single composite score from 0–100 reflecting your system's aggregate pre-deployment risk across all evaluated domains.
+  </Card>
+
+  <Card title="Category Breakdown" icon="chart-pie">
+    Individual scores for Performance, Security, Compliance, and Operational risk — so you know exactly which dimension is driving overall exposure.
+  </Card>
+
+  <Card title="Top 5 Risks Identified" icon="triangle-exclamation">
+    The five highest-priority risk findings ranked by impact, with plain-language descriptions of what could go wrong and why.
+  </Card>
+
+  <Card title="Mitigation Recommendations" icon="list-check">
+    Specific, actionable steps to address each identified risk — mapped to the controls, processes, or architectural changes required.
+  </Card>
+
+  <Card title="Estimated Mitigation Costs" icon="dollar-sign">
+    Indicative cost ranges for each recommended remediation, helping you build a realistic risk remediation budget.
+  </Card>
+
+  <Card title="Matched Incident Evidence" icon="magnifying-glass">
+    The top 10 real-world incidents from Sengol's database that most closely match your system profile, with match factors and relevance scores shown.
+  </Card>
+</CardGroup>
+
+<Note>
+  Scores reflect the probability and impact of failures based on similar systems in Sengol's incident database. They are designed to inform your deployment decision, not replace the judgment of qualified engineers, security professionals, or legal counsel.
+</Note>
+
+To understand the mathematics behind how scores are calculated from incident data, see [Scoring Methodology](/concepts/scoring-methodology).

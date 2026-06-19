@@ -1,0 +1,193 @@
+---
+title: "Risk Scores API: Get Detailed AI Risk Score Breakdown"
+sidebarTitle: "Risk Scores"
+description: "Retrieve detailed risk score breakdowns across Performance, Security, Compliance, and Operational dimensions for a completed Sengol assessment."
+---
+
+The Risk Scores endpoint gives you the full quantitative output of a completed Sengol assessment. Beyond the top-level summary you get from [GET /assessments/{id}](/api/assessments), this endpoint returns per-category scores across all four risk dimensions, a prioritised list of identified risks with mitigation recommendations, and a set of real-world incident records that informed the assessment — giving you both the "what" and the "why" behind each score.
+
+<Note>
+  Risk scores are only available for assessments with status `completed`. Call [GET /assessments/{id}](/api/assessments) first to confirm the assessment has finished processing before requesting scores.
+</Note>
+
+---
+
+## GET /risk-scores/{assessmentId}
+
+Retrieve the detailed risk score breakdown for a completed assessment.
+
+<CodeGroup>
+```bash curl
+curl https://api.sengol.ai/v1/risk-scores/asmt_xyz789 \
+  -H "Authorization: Bearer sk_live_YOUR_API_KEY"
+```
+
+```python Python
+import os
+import requests
+
+response = requests.get(
+    "https://api.sengol.ai/v1/risk-scores/asmt_xyz789",
+    headers={"Authorization": f"Bearer {os.environ['SENGOL_API_KEY']}"},
+)
+print(response.json())
+```
+
+```javascript Node.js
+const response = await fetch(
+  "https://api.sengol.ai/v1/risk-scores/asmt_xyz789",
+  {
+    headers: { Authorization: `Bearer ${process.env.SENGOL_API_KEY}` },
+  }
+);
+const data = await response.json();
+console.log(data);
+```
+</CodeGroup>
+
+### Response Fields
+
+<ResponseField name="assessmentId" type="string">
+  The identifier of the assessment these scores belong to.
+</ResponseField>
+
+<ResponseField name="overallScore" type="number">
+  Composite risk score from 0 to 100, calculated as a weighted average of the four category scores. A higher score indicates lower overall risk.
+</ResponseField>
+
+<ResponseField name="categories" type="object">
+  Per-category risk scores, each on a 0–100 scale.
+
+  <Expandable title="categories properties">
+    <ResponseField name="categories.performance" type="number">
+      Measures model accuracy, bias, robustness, and reliability risks. A low score indicates significant performance-related risk that could affect decision quality.
+    </ResponseField>
+
+    <ResponseField name="categories.security" type="number">
+      Evaluates exposure to adversarial attacks, data poisoning, model extraction, and prompt injection vulnerabilities.
+    </ResponseField>
+
+    <ResponseField name="categories.compliance" type="number">
+      Reflects alignment with applicable regulatory frameworks (for example, EU AI Act, NIST AI RMF, GDPR) based on your declared jurisdictions and use case.
+    </ResponseField>
+
+    <ResponseField name="categories.operational" type="number">
+      Assesses infrastructure risk, monitoring maturity, incident response readiness, and deployment practices relative to the system's scale.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="risks" type="array">
+  The top 5 identified risks for this system, ordered by severity. Each risk object contains:
+
+  <Expandable title="risk object properties">
+    <ResponseField name="risks[].name" type="string">
+      Short name identifying the risk (for example, `"Insufficient adversarial robustness testing"`).
+    </ResponseField>
+
+    <ResponseField name="risks[].severity" type="string">
+      Risk severity level. One of `critical`, `high`, `medium`, or `low`.
+    </ResponseField>
+
+    <ResponseField name="risks[].description" type="string">
+      A plain-language explanation of the risk and why it applies to this system.
+    </ResponseField>
+
+    <ResponseField name="risks[].recommendation" type="string">
+      A concrete, actionable remediation step you can take before deployment.
+    </ResponseField>
+
+    <ResponseField name="risks[].estimatedCost" type="string">
+      An estimated cost range for implementing the recommended remediation (for example, `"$5,000–15,000"`).
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="evidence" type="array">
+  Up to 10 real-world AI incident records from Sengol's incident database that are most relevant to this system's profile. Each evidence object contains:
+
+  <Expandable title="evidence object properties">
+    <ResponseField name="evidence[].incidentId" type="string">
+      Unique identifier for the incident record.
+    </ResponseField>
+
+    <ResponseField name="evidence[].company" type="string">
+      The organisation involved in the incident (may be anonymised for sensitive cases).
+    </ResponseField>
+
+    <ResponseField name="evidence[].date" type="string">
+      Year and month of the incident in `YYYY-MM` format.
+    </ResponseField>
+
+    <ResponseField name="evidence[].failureType" type="string">
+      Categorised failure mode (for example, `model_adversarial_attack`, `bias_discrimination`, `data_breach`, `model_drift`).
+    </ResponseField>
+
+    <ResponseField name="evidence[].relevanceScore" type="number">
+      A 0–100 score representing how closely the incident matches this system's profile. Higher scores indicate stronger similarity.
+    </ResponseField>
+
+    <ResponseField name="evidence[].matchFactors" type="string[]">
+      The factors that drove the relevance match (for example, `["industry", "use_case", "technology"]`).
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+### Example Response
+
+```json
+{
+  "data": {
+    "assessmentId": "asmt_xyz789",
+    "overallScore": 62,
+    "categories": {
+      "performance": 45,
+      "security": 71,
+      "compliance": 68,
+      "operational": 58
+    },
+    "risks": [
+      {
+        "name": "Insufficient adversarial robustness testing",
+        "severity": "high",
+        "description": "The model has not been tested against adversarial inputs. Financial services decision-automation systems are frequent targets of adversarial manipulation, particularly in credit and fraud use cases.",
+        "recommendation": "Implement adversarial testing with FGSM and PGD attacks before deployment. Consider integrating robustness checks into your CI/CD pipeline using frameworks such as IBM ART or Foolbox.",
+        "estimatedCost": "$5,000–15,000"
+      },
+      {
+        "name": "Inadequate bias evaluation across demographic groups",
+        "severity": "high",
+        "description": "No documented bias audit was found for protected characteristics. EU AI Act Article 10 and US CFPB guidance both require bias testing for high-risk automated decision systems.",
+        "recommendation": "Conduct a fairness audit using disaggregated evaluation metrics (demographic parity, equalised odds) before deployment and document results for regulators.",
+        "estimatedCost": "$8,000–20,000"
+      }
+    ],
+    "evidence": [
+      {
+        "incidentId": "inc_00192",
+        "company": "Financial Services Co.",
+        "date": "2024-03",
+        "failureType": "model_adversarial_attack",
+        "relevanceScore": 91,
+        "matchFactors": ["industry", "use_case", "technology"]
+      },
+      {
+        "incidentId": "inc_00147",
+        "company": "Consumer Lending Platform",
+        "date": "2023-11",
+        "failureType": "bias_discrimination",
+        "relevanceScore": 87,
+        "matchFactors": ["industry", "data_types", "jurisdiction"]
+      }
+    ]
+  },
+  "meta": {
+    "requestId": "req_01HX9KZMQ3BFPV2NTW8YCEJ5D",
+    "timestamp": "2025-01-15T10:32:00Z"
+  }
+}
+```
+
+<Tip>
+  Use the `relevanceScore` field in each evidence record to prioritise which incidents are most instructive for your team. Incidents with scores above 85 share strong profile similarities with your system and warrant close review.
+</Tip>

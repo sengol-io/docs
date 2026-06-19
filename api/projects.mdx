@@ -1,0 +1,260 @@
+---
+title: "Projects API: Create and Manage Assessment Projects"
+sidebarTitle: "Projects"
+description: "Use the Sengol Projects API to create, list, and retrieve projects that organize your risk assessments and compliance documentation."
+---
+
+Projects are organisational containers that group related risk assessments together. You might create one project per AI product, per team, or per compliance initiative — whatever structure best maps to how your organisation manages AI systems. Grouping assessments into projects makes it easier to track risk trends over time and generate consolidated compliance reports.
+
+---
+
+## POST /projects
+
+Create a new project to organise your assessments. Once created, you can reference the project's `id` when starting new assessments via [POST /assessments](/api/assessments).
+
+<CodeGroup>
+```bash curl
+curl -X POST https://api.sengol.ai/v1/projects \
+  -H "Authorization: Bearer sk_live_YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Customer AI Portfolio",
+    "description": "AI systems owned by the customer experience team"
+  }'
+```
+
+```python Python
+import os
+import requests
+
+response = requests.post(
+    "https://api.sengol.ai/v1/projects",
+    json={
+        "name": "Customer AI Portfolio",
+        "description": "AI systems owned by the customer experience team",
+    },
+    headers={"Authorization": f"Bearer {os.environ['SENGOL_API_KEY']}"},
+)
+print(response.json())
+```
+
+```javascript Node.js
+const response = await fetch("https://api.sengol.ai/v1/projects", {
+  method: "POST",
+  headers: {
+    Authorization: `Bearer ${process.env.SENGOL_API_KEY}`,
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    name: "Customer AI Portfolio",
+    description: "AI systems owned by the customer experience team",
+  }),
+});
+const data = await response.json();
+console.log(data);
+```
+</CodeGroup>
+
+### Request Body
+
+<ParamField body="name" type="string" required>
+  A short, descriptive name for the project (for example, `"Customer AI Portfolio"`). This name appears throughout the Sengol dashboard and in report metadata.
+</ParamField>
+
+<ParamField body="description" type="string">
+  An optional longer description explaining the project's scope or ownership. Useful for teams managing multiple AI portfolios.
+</ParamField>
+
+### Response
+
+<ResponseField name="id" type="string">
+  Unique identifier for the project (for example, `proj_abc123`). Use this ID when creating assessments or querying project-specific endpoints.
+</ResponseField>
+
+<ResponseField name="name" type="string">
+  The project name as provided in the request.
+</ResponseField>
+
+<ResponseField name="description" type="string">
+  The project description, if provided.
+</ResponseField>
+
+<ResponseField name="createdAt" type="string">
+  ISO 8601 timestamp of when the project was created.
+</ResponseField>
+
+<ResponseField name="assessmentCount" type="integer">
+  Total number of assessments associated with this project.
+</ResponseField>
+
+```json
+{
+  "data": {
+    "id": "proj_abc123",
+    "name": "Customer AI Portfolio",
+    "description": "AI systems owned by the customer experience team",
+    "createdAt": "2025-01-10T09:00:00Z",
+    "assessmentCount": 0
+  },
+  "meta": {
+    "requestId": "req_01HX8JZMQ3BFPV2NTW8YCEJ4C",
+    "timestamp": "2025-01-10T09:00:00Z"
+  }
+}
+```
+
+---
+
+## GET /projects
+
+List all projects in your account, ordered by creation date descending.
+
+<CodeGroup>
+```bash curl
+curl "https://api.sengol.ai/v1/projects?limit=20&offset=0" \
+  -H "Authorization: Bearer sk_live_YOUR_API_KEY"
+```
+
+```python Python
+import os
+import requests
+
+response = requests.get(
+    "https://api.sengol.ai/v1/projects",
+    params={"limit": 20, "offset": 0},
+    headers={"Authorization": f"Bearer {os.environ['SENGOL_API_KEY']}"},
+)
+print(response.json())
+```
+
+```javascript Node.js
+const params = new URLSearchParams({ limit: 20, offset: 0 });
+const response = await fetch(`https://api.sengol.ai/v1/projects?${params}`, {
+  headers: { Authorization: `Bearer ${process.env.SENGOL_API_KEY}` },
+});
+const data = await response.json();
+console.log(data);
+```
+</CodeGroup>
+
+### Query Parameters
+
+<ParamField query="limit" type="integer">
+  Number of projects to return per page. Defaults to `20`, maximum `100`.
+</ParamField>
+
+<ParamField query="offset" type="integer">
+  Number of projects to skip for pagination. Defaults to `0`.
+</ParamField>
+
+---
+
+## GET /projects/{id}
+
+Retrieve full details and summary statistics for a single project.
+
+<CodeGroup>
+```bash curl
+curl https://api.sengol.ai/v1/projects/proj_abc123 \
+  -H "Authorization: Bearer sk_live_YOUR_API_KEY"
+```
+
+```python Python
+import os
+import requests
+
+response = requests.get(
+    "https://api.sengol.ai/v1/projects/proj_abc123",
+    headers={"Authorization": f"Bearer {os.environ['SENGOL_API_KEY']}"},
+)
+print(response.json())
+```
+
+```javascript Node.js
+const response = await fetch(
+  "https://api.sengol.ai/v1/projects/proj_abc123",
+  {
+    headers: { Authorization: `Bearer ${process.env.SENGOL_API_KEY}` },
+  }
+);
+const data = await response.json();
+console.log(data);
+```
+</CodeGroup>
+
+### Response
+
+The response includes the full project metadata along with aggregated summary statistics across all associated assessments.
+
+```json
+{
+  "data": {
+    "id": "proj_abc123",
+    "name": "Customer AI Portfolio",
+    "description": "AI systems owned by the customer experience team",
+    "createdAt": "2025-01-10T09:00:00Z",
+    "assessmentCount": 7,
+    "summary": {
+      "averageOverallScore": 68,
+      "completedAssessments": 6,
+      "pendingAssessments": 1,
+      "highRiskCount": 2
+    }
+  },
+  "meta": {
+    "requestId": "req_01HX8KZMQ3BFPV2NTW8YCEJ4D",
+    "timestamp": "2025-01-15T10:30:00Z"
+  }
+}
+```
+
+---
+
+## GET /projects/{id}/assessments
+
+List all assessments belonging to a specific project. This endpoint is equivalent to calling `GET /assessments?projectId={id}` but is provided for convenience when working within a project context.
+
+<CodeGroup>
+```bash curl
+curl "https://api.sengol.ai/v1/projects/proj_abc123/assessments?status=completed&limit=20" \
+  -H "Authorization: Bearer sk_live_YOUR_API_KEY"
+```
+
+```python Python
+import os
+import requests
+
+response = requests.get(
+    "https://api.sengol.ai/v1/projects/proj_abc123/assessments",
+    params={"status": "completed", "limit": 20, "offset": 0},
+    headers={"Authorization": f"Bearer {os.environ['SENGOL_API_KEY']}"},
+)
+print(response.json())
+```
+
+```javascript Node.js
+const params = new URLSearchParams({ status: "completed", limit: 20, offset: 0 });
+const response = await fetch(
+  `https://api.sengol.ai/v1/projects/proj_abc123/assessments?${params}`,
+  {
+    headers: { Authorization: `Bearer ${process.env.SENGOL_API_KEY}` },
+  }
+);
+const data = await response.json();
+console.log(data);
+```
+</CodeGroup>
+
+### Query Parameters
+
+<ParamField query="limit" type="integer">
+  Number of assessments to return per page. Defaults to `20`, maximum `100`.
+</ParamField>
+
+<ParamField query="offset" type="integer">
+  Number of assessments to skip for pagination. Defaults to `0`.
+</ParamField>
+
+<ParamField query="status" type="string">
+  Filter by assessment status. One of `pending`, `processing`, `completed`, or `failed`.
+</ParamField>

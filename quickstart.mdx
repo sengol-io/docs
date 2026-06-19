@@ -1,0 +1,67 @@
+---
+title: "Quickstart: Run Your First Sengol AI Risk Assessment"
+sidebarTitle: "Quickstart"
+description: "Run your first AI risk assessment in four steps. Create an account, describe your AI system, and get scored results in under 15 minutes."
+---
+
+This guide walks you through running your first AI risk assessment on Sengol. By the end, you will have a complete risk profile for an AI system — including an overall score (0–100), a breakdown across four risk dimensions, your top five risks, and a prioritized set of mitigation recommendations. The whole process takes between 5 and 20 minutes, depending on how much detail you provide.
+
+## Prerequisites
+
+Before you begin, make sure you have:
+
+- **A description of the AI system you want to assess** — you don't need technical specifications, but it helps to know the model type (e.g. LLM, computer vision, recommendation engine), intended use case, data types it processes, and the environment it will be deployed in.
+- **A Sengol account** — the Free plan is available instantly at [sengol.ai/auth/register](https://sengol.ai/auth/register). No credit card is required for any plan to get started.
+
+<Steps>
+  <Step title="Create your account">
+    Go to [sengol.ai/auth/register](https://sengol.ai/auth/register) and sign up. The Free plan activates immediately — no credit card required. If you want to try a paid plan, select Pro or Team at registration and your 14-day free trial begins automatically. You can upgrade, downgrade, or cancel at any time from your account settings.
+  </Step>
+  <Step title="Start a new assessment">
+    Once you are logged in, navigate to your [dashboard](https://sengol.ai/dashboard) and select **Tools → Sengol Risk → Start Risk Assessment**, or go directly to [sengol.ai/tools/risk/assess](https://sengol.ai/tools/risk/assess). Give your assessment a descriptive name — for example, "Customer churn prediction model — Q3 launch review" — so you can find it later and share it with colleagues.
+  </Step>
+  <Step title="Answer the questionnaire">
+    Work through the structured questionnaire covering 15+ categories. Sengol uses your answers to map your system against 100,000+ real-world incident patterns and applicable compliance frameworks. Categories include:
+
+    - **Industry and use case** — the sector you operate in and the purpose of the AI system
+    - **AI model type** — e.g. large language model, classification model, generative AI, computer vision
+    - **Data sensitivity** — whether the system processes personal, financial, health, or regulated data
+    - **Security posture** — existing controls, access management, vulnerability management practices
+    - **Compliance requirements** — which regulations and standards apply to your organization and system
+    - **Team size and structure** — the people responsible for the system's development, deployment, and oversight
+    - **Deployment environment** — cloud provider, on-premises, hybrid, or edge deployment
+
+    Most assessments take **5–20 minutes**. You can save your progress and return at any time before submitting.
+  </Step>
+  <Step title="Review your risk profile">
+    After you submit the questionnaire, Sengol generates your risk profile. You receive:
+
+    - **Overall risk score (0–100)** — a single composite score representing your system's aggregate risk level, where lower is better
+    - **Dimension breakdown** — individual scores for Performance, Security, Compliance, and Operational risk
+    - **Top 5 risks** — the highest-priority risk findings, each with a severity rating and the incident evidence behind it
+    - **Mitigation recommendations** — a prioritized action plan tailored to your system's profile, with estimated remediation effort and cost impact
+    - **Compliance gap summary** — a view of which frameworks your system currently satisfies and where gaps exist
+
+    Review your results in the dashboard, share the assessment with teammates, or export it as a PDF or Excel report for audits and board presentations.
+  </Step>
+</Steps>
+
+<Note>
+  Free plan users receive full risk scores and recommendations in the dashboard. PDF export and Excel report generation require a **Pro plan or above**. [Compare plans →](/plans-and-pricing)
+</Note>
+
+## What happens next
+
+Once you have your first risk profile, use these resources to put it to work:
+
+<CardGroup cols={3}>
+  <Card title="Reading Your Results" icon="chart-bar" href="/guides/reading-your-results">
+    Understand what your scores mean, how to interpret dimension breakdowns, and how to prioritize the recommendations.
+  </Card>
+  <Card title="Understanding Risk Scores" icon="lightbulb" href="/concepts/risk-scores">
+    Dive deeper into how Sengol calculates scores, what evidence sources power them, and how benchmarks are applied.
+  </Card>
+  <Card title="Setting Up a Project" icon="folder-open" href="/platform/projects">
+    Organize multiple assessments into projects, track risk over time, and collaborate with your team across a portfolio of AI systems.
+  </Card>
+</CardGroup>

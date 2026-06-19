@@ -1,0 +1,94 @@
+---
+title: "Sengol Risk Assessment: Score Your AI Before Launch"
+sidebarTitle: "Risk Assessment"
+description: "Run a Sengol AI risk assessment to get quantitative scores across Performance, Security, Compliance, and Operational dimensions before you deploy."
+---
+
+Sengol's Risk Assessment gives you a quantitative, evidence-backed picture of your AI system's readiness before it goes live. Answer a structured set of questions about your system's design, deployment environment, and governance posture, and Sengol returns a scored report — broken down across Performance, Security, Compliance, and Operational dimensions — along with ranked risks, mitigation recommendations, and real-world incident evidence drawn from a database of 100,000+ documented AI failures.
+
+## What a risk assessment covers
+
+Sengol's AI-generated questionnaire adapts to your system as you answer. Depending on your inputs, you will work through questions across 15+ categories:
+
+- **Industry and use case** — sector-specific risk profiles and regulatory exposure
+- **AI model type** — model architecture, training methodology, and known failure modes
+- **Deployment environment** — cloud, on-premise, edge, or hybrid infrastructure
+- **Data sensitivity** — PII, PHI, financial data, and other regulated data types in scope
+- **Security posture** — access controls, authentication, logging, and adversarial robustness
+- **Compliance requirements** — applicable frameworks such as EU AI Act, GDPR, HIPAA, and SOC 2
+- **Team expertise** — AI/ML experience, security maturity, and governance capability
+- **Budget and resources** — available capacity for mitigation and ongoing monitoring
+- **Existing controls** — current safeguards, audits, and third-party assessments already in place
+- **Model transparency** — explainability, auditability, and documentation standards
+- **Integration points** — upstream data sources, downstream consumers, and API exposure
+- **User impact** — affected populations, high-risk decisions, and human oversight mechanisms
+- **Change management** — deployment cadence, rollback procedures, and incident response plans
+- **Third-party dependencies** — vendor models, open-source components, and supply-chain risk
+- **Geographical scope** — jurisdictions served and cross-border data transfer obligations
+
+## How to run an assessment
+
+<Steps>
+  <Step title="Open the Risk Assessment tool">
+    Navigate to **Tools → Sengol Risk** in the dashboard sidebar, or go directly to [https://sengol.ai/tools/risk/assess](https://sengol.ai/tools/risk/assess).
+  </Step>
+  <Step title="Answer questions about your AI system">
+    Work through the adaptive questionnaire at your own pace. Most assessments take **5–20 minutes** depending on the complexity of your system and the number of applicable categories. You can save progress and return later.
+  </Step>
+  <Step title="Review your results">
+    When you submit, Sengol generates your report immediately. You will see:
+    - An **overall risk score** from 0 to 100
+    - A **breakdown by dimension** — Performance, Security, Compliance, and Operational
+    - Your **top 5 identified risks**, ranked by severity and likelihood
+    - **Mitigation recommendations** with implementation guidance
+    - **Top 10 most relevant incidents** from the incident database, matched to your profile
+  </Step>
+  <Step title="Save or export your results">
+    On paid plans, save the assessment to a project to track your score history over time. On Pro and above, export the full report as a **PDF** or **Excel** file for internal review, audits, or board reporting.
+  </Step>
+</Steps>
+
+## Assessment results breakdown
+
+Each assessment produces scores across four dimensions. Higher scores indicate lower risk.
+
+<CardGroup cols={2}>
+  <Card title="Performance" icon="gauge-high">
+    Evaluates how reliably your AI system meets its intended objectives. Covers model accuracy, drift risk, data quality, and resilience under real-world operating conditions.
+  </Card>
+  <Card title="Security" icon="shield-halved">
+    Assesses your defenses against adversarial attacks, data poisoning, model theft, unauthorized access, and other exploitation vectors specific to AI systems.
+  </Card>
+  <Card title="Compliance" icon="scale-balanced">
+    Measures your alignment with applicable legal and regulatory frameworks. Flags specific gaps relative to requirements such as the EU AI Act, GDPR, HIPAA, and SOC 2.
+  </Card>
+  <Card title="Operational" icon="gears">
+    Examines your team's capability to deploy, monitor, and govern the system over time — including incident response readiness, change management, and ongoing oversight processes.
+  </Card>
+</CardGroup>
+
+## Evidence-based insights
+
+Sengol's scoring is not theoretical. Every assessment result is grounded in documented real-world AI failures.
+
+Your report surfaces the **top 10 most relevant incidents** from a database of 100,000+ cases, selected based on match factors including:
+
+- Your industry and sector
+- Model type and architecture
+- Deployment environment and scale
+- Data types processed
+- Applicable compliance frameworks
+
+Each matched incident includes a **relevance percentage** showing how closely it aligns to your system profile, along with a summary of what failed, what controls were absent, and what the outcome was. This evidence helps you prioritize the risks most likely to materialize — not just the risks that look significant in the abstract.
+
+<Note>
+  **Reassess regularly to keep your scores current.** Sengol recommends running a new assessment at least quarterly as a baseline. You should also reassess whenever you:
+  - Change your model architecture, training data, or deployment infrastructure
+  - Enter a new jurisdiction or expand to new user populations
+  - Encounter new regulatory guidance or framework updates
+  - Experience a security incident or significant operational failure
+
+  Score history is preserved in your project so you can track improvement over time.
+</Note>
+
+For a walkthrough of how to interpret each section of your report, see the [Reading Your Results](/guides/reading-your-results) guide.
